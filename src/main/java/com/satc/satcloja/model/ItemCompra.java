@@ -23,6 +23,10 @@ public class ItemCompra extends EntityId{
     @JoinColumn(name = "compra_id")
     private Compra compra;
 
+    public ItemCompra() {
+
+    }
+
     public ItemCompra(Produto produto, Double valorUnitario, Double quantidade, Double desconto) {
         this.produto = produto;
         this.valorUnitario = valorUnitario;
@@ -66,5 +70,9 @@ public class ItemCompra extends EntityId{
         double valorTotal = this.getValorUnitario() * this.getQuantidade();
         double descontoCalculado = valorTotal * (this.getDesconto() /100);
         return valorTotal - descontoCalculado;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
 }

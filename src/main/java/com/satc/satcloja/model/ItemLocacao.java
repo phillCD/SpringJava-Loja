@@ -18,6 +18,9 @@ public class ItemLocacao extends EntityId{
     @JoinColumn(name = "locacao")
     private Locacao locacao;
 
+    public ItemLocacao() {
+    }
+
     public Produto getProduto() {return produto;}
 
     public void setProduto(Produto produto) {this.produto = produto;}
@@ -45,5 +48,9 @@ public class ItemLocacao extends EntityId{
         double valorTotal = this.getValorUnitario() * this.getQuantidade();
         double descontoCalculado = valorTotal * (this.getDesconto() /100);
         return valorTotal - descontoCalculado;
+    }
+
+    public void setLocacao(Locacao locacao) {
+        this.locacao = locacao;
     }
 }

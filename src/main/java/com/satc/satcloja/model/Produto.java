@@ -2,23 +2,21 @@ package com.satc.satcloja.model;
 
 import com.satc.satcloja.enums.Status;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.beans.ConstructorProperties;
 import java.time.LocalDate;
 
 @Entity
+@DiscriminatorValue("produto")
 public class Produto extends ItemVendavel{
 
-    @Column(name = "nome", length = 100, nullable = false)
+    @Column(name = "nome", length = 100, nullable = true)
     private String nome;
-    @Column(name = "preco_compra", nullable = false)
+    @Column(name = "preco_compra", nullable = true)
     private Double precoCompra;
-    @Column(name = "dt_validade", nullable = false)
+    @Column(name = "dt_validade", nullable = true)
     private LocalDate dataValidade;
-    @Column(name = "dt_prazo", nullable = false)
+    @Column(name = "dt_prazo", nullable = true)
     private LocalDate dataPrazo;
     @Enumerated(EnumType.STRING)
     @Column(name = "status")

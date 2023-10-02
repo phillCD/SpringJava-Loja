@@ -47,7 +47,10 @@ public class Locacao extends EntityId implements OperacaoFinanceira {
 
     public void setItens(List<ItemLocacao> itens) {this.itens = itens;}
 
-    public void addItemLocacao(ItemLocacao item) {this.itens.add(item);}
+    public void addItemLocacao(ItemLocacao item) {
+        item.setLocacao(this);
+        this.itens.add(item);
+    }
 
     @Override
     public LocalDate getDataOperacao() {

@@ -1,27 +1,29 @@
 package com.satc.satcloja.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Venda extends EntityId implements OperacaoFinanceira{
+
+    @Column(name = "data_venda")
     private LocalDate dataVenda;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-    private Fornecedor fornecedor;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "forma_pagamento")
     private FormaPagamento formaPagamento;
+    @Column(name = "observacao")
     private String observacao;
+    @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
     private List<ItemVenda> itens = new ArrayList<>();
 
     public void addItemVenda(ItemVenda item) {
+        item.setVenda(this);
         this.itens.add(item);
-    }
-
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
     }
 
     public void delItemVenda(ItemVenda item){

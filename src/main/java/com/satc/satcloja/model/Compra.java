@@ -35,7 +35,10 @@ public class Compra extends EntityId implements OperacaoFinanceira {
 
     public void setItens(List<ItemCompra> itens) {this.itens = itens;}
 
-    public void addItemCompra(ItemCompra item) {this.itens.add(item);}
+    public void addItemCompra(ItemCompra item) {
+        item.setCompra(this);
+        this.itens.add(item);
+    }
 
     @Override
     public LocalDate getDataOperacao() {
